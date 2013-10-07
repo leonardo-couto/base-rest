@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<Configure id='wac' class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="hsqldb" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg><Ref id="wac"/></Arg>
+        <Arg>jdbc/hsqldb</Arg>
+        <Arg>
+            <New class="org.hsqldb.jdbc.JDBCDataSource">
+                <Set name="Url">jdbc:hsqldb:mem:db</Set>
+                <Set name="User">sa</Set>
+                <Set name="Password">sa</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>

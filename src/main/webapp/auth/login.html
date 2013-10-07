@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <script src="../lib/angular.js"></script>
+  <script src="../js/loginController.js"></script>
+</head>
+<body>
+ 
+  <p>Logar!</p>
+  
+  <form action="" ng-controller="LoginController">
+    <input type="hidden" value="{{redirect}}">
+    <label for="email">Email: </label><input id="email" type="text" value="">
+    <label for="password">Senha: </label><input type="password" value="">
+    <input type="submit" value="Login">
+  </form>
+ 
+</body>
+</html>
