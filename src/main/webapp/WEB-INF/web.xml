@@ -58,6 +58,11 @@
     <url-pattern>service/*</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+    <servlet-name>rest</servlet-name>
+    <url-pattern>auth/user/*</url-pattern>
+  </servlet-mapping>
+  
   <!--  RESOURCES -->
     
   <resource-ref>

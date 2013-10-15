@@ -1,21 +1,32 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="auth">
 <head>
   <meta charset="UTF-8">
   <title>Login Page</title>
   <script src="../lib/angular.js"></script>
   <script src="../js/loginController.js"></script>
+  <script src="../js/signUpController.js"></script>
 </head>
 <body>
  
-  <p>Logar!</p>
+  <p>Login</p>
   
   <form action="" ng-controller="LoginController">
     <input type="hidden" value="{{redirect}}">
     <label for="email">Email: </label><input id="email" type="text" value="">
-    <label for="password">Senha: </label><input type="password" value="">
+    <label for="password">Password: </label><input type="password" value="">
     <input type="submit" value="Login">
   </form>
+  
+  <p>or sign up:</p>
+  
+  <form novalidate class="simple-form" ng-controller="SignUpController">
+    <label for="name">Name: </label><input id="name" type="text" value="" ng-model="user.name"><br>
+    <label for="email">Email: </label><input id="email" type="text" value="" ng-model="user.email"><br>
+    <label for="password">Password: </label><input type="password" value="" ng-model="user.password"><br>
+    <button ng-click="submit(user)">Sign up</button>
+  </form>
+  
  
 </body>
 </html>
