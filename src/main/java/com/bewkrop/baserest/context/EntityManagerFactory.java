@@ -9,7 +9,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-//TODO: ver como acessar essa factory, precisa registrar o listener no web.xml?
+//TODO: ver se inicializa tambem no gae 
 //TODO: pagina de criacao de usuario
 
 @WebListener
