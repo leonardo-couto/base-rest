@@ -23,7 +23,7 @@
     <dependency>
       <groupId>com.bewkrop</groupId>
       <artifactId>auth</artifactId>
-      <version>0.0.3</version>
+      <version>0.0.4-SNAPSHOT</version>
     </dependency>
   
     <!-- API -->
@@ -77,6 +77,11 @@
           <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
+            <version>${version.jersey}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
             <version>${version.jersey}</version>
           </dependency>
           <dependency>
