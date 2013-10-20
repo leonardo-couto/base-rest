@@ -13,16 +13,6 @@
     <filter-class>com.bewkrop.auth.web.filter.AuthFilter</filter-class>
   </filter>
 
-  <filter>
-    <filter-name>transaction</filter-name>
-    <filter-class>com.bewkrop.baserest.context.TransactionFilter</filter-class>
-  </filter>
-  
-  <filter-mapping>
-    <filter-name>transaction</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-
   <filter-mapping>
     <filter-name>authFilter</filter-name>
     <url-pattern>index.html</url-pattern>

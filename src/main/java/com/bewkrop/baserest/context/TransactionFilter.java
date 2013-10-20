@@ -13,7 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter
+@WebFilter(urlPatterns="/*")
 public class TransactionFilter implements Filter {
 
 	@Override
