@@ -16,9 +16,10 @@ import javax.servlet.annotation.WebListener;
 public class EntityManagerFactory implements ServletContextListener {
 	
 	private static final String NAME_KEY = "persistence-unit";
+	private static final LocalEntityManager LOCAL = new LocalEntityManager();
 
 	private static javax.persistence.EntityManagerFactory factory = null;
-
+	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		String name = getName();
@@ -30,7 +31,15 @@ public class EntityManagerFactory implements ServletContextListener {
 		if (factory != null) factory.close();
 	}
 	
-	public static EntityManager createEntityManager() {
+	public static EntityManager get() {
+		return LOCAL.get();
+	}
+	
+	public static void remove() {
+		LOCAL.remove();
+	}
+	
+	private static EntityManager createEntityManager() {
 		return factory.createEntityManager();
 	}
 	
@@ -45,6 +54,25 @@ public class EntityManagerFactory implements ServletContextListener {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	
+	private static class LocalEntityManager extends ThreadLocal<EntityManager> {
+
+		@Override
+		protected EntityManager initialValue() {
+			return EntityManagerFactory.createEntityManager();
+		}
+
+		@Override
+		public void remove() {
+			EntityManager em = this.get();
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			super.remove();
+		}
+
 	}
 	
 }

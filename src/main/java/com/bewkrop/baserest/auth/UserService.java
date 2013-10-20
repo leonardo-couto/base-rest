@@ -1,7 +1,6 @@
 package com.bewkrop.baserest.auth;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import com.bewkrop.auth.user.User;
 import com.bewkrop.auth.user.UserRepository;
@@ -12,42 +11,23 @@ public class UserService implements UserRepository {
 
 	@Override
 	public User get(String key) {
-		EntityManager entityManager = EntityManagerFactory.createEntityManager();
-		User user = null;
-
-		try {
-			user = entityManager.find(BaseUser.class, key);
-
-		} finally {
-			entityManager.close();
-		}
+		EntityManager entityManager = EntityManagerFactory.get();
+		User user = entityManager.find(BaseUser.class, key);
 
 		return user;
 	}
 
 	@Override
 	public boolean save(User user) {
-		EntityManager entityManager = EntityManagerFactory.createEntityManager();
-		boolean success = false;
+		EntityManager entityManager = EntityManagerFactory.get();
 
-		try {
-			EntityTransaction entityTransaction = entityManager.getTransaction();
-			entityTransaction.begin();
+		BaseUser base = new BaseUser(user.key());
+		base.setPassword(user.hash());
+		base.setRoles(user.roles());
 
-			BaseUser base = new BaseUser(user.key());
-			base.setPassword(user.hash());
-			base.setRoles(user.roles());
+		entityManager.merge(base);
 
-			entityManager.merge(base);
-
-			entityTransaction.commit();
-			success = true;
-
-		} finally {
-			entityManager.close();
-		}
-
-		return success;
+		return true;
 	}
 
 }

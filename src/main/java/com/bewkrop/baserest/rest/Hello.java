@@ -1,6 +1,6 @@
 package com.bewkrop.baserest.rest;
 
-import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,8 +11,10 @@ public class Hello {
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@RolesAllowed("ADMIN")
+	@PermitAll
+	//@RolesAllowed("ADMIN")
 	public String greeting() {
+		
 		return "Ol\u00E1 mundo cruel!\n";
 	}
 
