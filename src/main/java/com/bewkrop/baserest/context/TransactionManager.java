@@ -67,7 +67,6 @@ public class TransactionManager {
 			// TODO: LOG
 			e.printStackTrace();
 		}
-		return;
 	}
 	
 	
