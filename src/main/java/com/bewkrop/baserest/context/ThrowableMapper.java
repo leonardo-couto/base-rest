@@ -13,6 +13,7 @@ public class ThrowableMapper implements ExceptionMapper<Throwable> {
 		TransactionManager transactionManager = new TransactionManager();
 		transactionManager.rollback();
 		
+		// TODO: log exception		
 		return Response.status(Status.INTERNAL_SERVER_ERROR).entity(exception).build();
 	}
 
