@@ -9,8 +9,13 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Provider
 public class TransactionFilter implements ContainerRequestFilter, ContainerResponseFilter {
+	
+	private final Logger logger = LoggerFactory.getLogger(TransactionFilter.class);
 	
 	@Override
 	public void filter(ContainerRequestContext request) {
@@ -21,7 +26,7 @@ public class TransactionFilter implements ContainerRequestFilter, ContainerRespo
 				transactionManager.beginTransaction();			
 			}
 		} catch (Exception e) {
-			// TODO: log exception
+			logger.error("Error on transaction starting", e);
 			ResponseBuilder responseBuilder = Response.status(Status.INTERNAL_SERVER_ERROR);
 			Response response = responseBuilder.entity(e.getMessage()).build();
 			request.abortWith(response);
@@ -36,8 +41,8 @@ public class TransactionFilter implements ContainerRequestFilter, ContainerRespo
 			transactionManager.commit();
 			
 		} catch (Exception e) {
+			logger.error("Error trying to commit");
 			response.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
-			// TODO: log exception
 			response.setEntity(e.getMessage());
 		}
 	}

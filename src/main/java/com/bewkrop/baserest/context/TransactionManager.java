@@ -3,8 +3,12 @@ package com.bewkrop.baserest.context;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TransactionManager {
 	
+	private final Logger logger = LoggerFactory.getLogger(TransactionManager.class);
 	private final EntityManager em;
 	
 	public TransactionManager() {
@@ -64,11 +68,9 @@ public class TransactionManager {
 		try {
 			transaction.rollback();
 		} catch (Exception e) {
-			// TODO: LOG
-			e.printStackTrace();
+			logger.error("Error trying to rollback", e);
 		}
 	}
-	
 	
 
 }
