@@ -2,11 +2,14 @@
 
 <Configuration status="WARN" strict="true" name="simple-config">
 
-  <Filter type="ThresholdFilter" level="WARN"/>
+  <Filter type="ThresholdFilter" level="INFO"/>
 
   <Appenders>
     <Appender type="Console" name="STDOUT">
-      <Layout type="PatternLayout" pattern="[%d{HH:mm:ss.SSS}] %t [%-5level] %logger{36} - %msg%n"/>
+      <Layout type="PatternLayout" pattern="[%d{HH:mm:ss.SSS}] %t [%level] %logger{36} - %msg%n"/>
+    </Appender>
+    <Appender type="Console" name="MAVEN">
+      <Layout type="PatternLayout" pattern="[%level] %msg%n"/>
     </Appender>
   </Appenders>
 
@@ -23,7 +26,23 @@
       <AppenderRef ref="STDOUT" />
     </Logger>
 
-    <Root level="ERROR">
+    <Logger name="org.apache.maven" level="INFO" additivity="false">
+      <AppenderRef ref="MAVEN" />
+    </Logger>
+
+    <Logger name="org.codehaus.plexus" level="INFO" additivity="false">
+      <AppenderRef ref="MAVEN" />
+    </Logger>
+
+    <Logger name="org.eclipse.jetty.server" level="INFO" additivity="false">
+      <AppenderRef ref="MAVEN" />
+    </Logger>  
+
+    <Logger name="org.eclipse.jetty.maven" level="INFO" additivity="false">
+      <AppenderRef ref="MAVEN" />
+    </Logger>
+
+    <Root level="WARN">
       <AppenderRef ref="STDOUT"/>
     </Root>
   </Loggers>
