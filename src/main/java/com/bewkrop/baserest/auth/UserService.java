@@ -18,12 +18,12 @@ public class UserService implements UserRepository {
 	}
 
 	@Override
-	public boolean save(User user) {
+	public boolean save(String key, String password) {
 		EntityManager entityManager = EntityManagerFactory.get();
 
-		BaseUser base = new BaseUser(user.key());
-		base.setPassword(user.hash());
-		base.setRoles(user.roles());
+		BaseUser base = new BaseUser(key);
+		base.setPassword(password);
+		base.setRoles("AUTH");
 
 		entityManager.merge(base);
 

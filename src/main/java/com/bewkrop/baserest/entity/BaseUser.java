@@ -1,10 +1,18 @@
 package com.bewkrop.baserest.entity;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.bewkrop.auth.user.Credential;
+import com.bewkrop.auth.user.User;
+
 @Entity
-public class BaseUser implements com.bewkrop.auth.user.User {
+public class BaseUser implements User {
+	
+	private static final String CSV_REGEX = "[\\,|;]";
 	
 	/**
 	 * Use it to create a new entity
@@ -44,18 +52,27 @@ public class BaseUser implements com.bewkrop.auth.user.User {
 	}
 
 	@Override
+	public Credential credential() {
+		final String original = this.password;
+		return new Credential() {
+			
+			@Override
+			public boolean check(char[] password) {
+				String credential = new String(password);
+				return original.equals(credential);
+			}
+		};
+	}
+	
+	@Override
 	public String key() {
 		return this.email;
 	}
 
 	@Override
-	public String hash() {
-		return this.password;
-	}
-
-	@Override
-	public String roles() {
-		return this.roles;
+	public List<String> roles() {
+		String[] roles = this.roles.split(CSV_REGEX);
+		return Arrays.asList(roles);
 	}
 
 }
