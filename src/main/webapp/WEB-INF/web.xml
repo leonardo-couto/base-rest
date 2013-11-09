@@ -5,7 +5,7 @@
 <web-app>
   <display-name>base-rest</display-name>
   <description>A base webapp based on Rest and JPA</description>
-
+  
   <!-- FILTROS -->
 
 <!--   <filter> -->
@@ -74,5 +74,31 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  
+  <!--  SECURITY -->
+    
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>JAAS Role</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>AUTH</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>JAASRealm</realm-name>
+    <form-login-config>
+      <form-login-page>/auth/login.html</form-login-page>
+      <form-error-page>/authfail.html</form-error-page>
+    </form-login-config>
+  </login-config>
+
+  <security-role>
+    <role-name>AUTH</role-name>
+  </security-role>
+  
   
 </web-app>
