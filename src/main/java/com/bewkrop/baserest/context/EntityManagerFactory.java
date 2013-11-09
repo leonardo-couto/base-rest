@@ -10,8 +10,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 //TODO: ver se inicializa tambem no gae 
-//TODO: pagina de criacao de usuario
-
 @WebListener
 public class EntityManagerFactory implements ServletContextListener {
 	
