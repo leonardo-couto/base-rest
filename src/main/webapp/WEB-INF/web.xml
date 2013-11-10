@@ -21,7 +21,6 @@
       <param-name>jersey.config.server.provider.classnames</param-name>
       <param-value>
         org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
-        com.bewkrop.auth.web.filter.ContainerFilter;
         com.bewkrop.baserest.context.ThrowableMapper;
         com.bewkrop.baserest.context.TransactionFilter;
       </param-value> 
@@ -55,7 +54,6 @@
     <web-resource-collection>
       <web-resource-name>restricted resources</web-resource-name>
       <url-pattern>index.html</url-pattern>
-      <url-pattern>/</url-pattern>
       <url-pattern>app/*</url-pattern>
       <url-pattern>service/*</url-pattern>
     </web-resource-collection>
