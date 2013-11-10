@@ -22,10 +22,8 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <non-jta-data-source>java:comp/env/jdbc/hsqldb</non-jta-data-source>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" 
-                      value="create" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
-
 
 </persistence>

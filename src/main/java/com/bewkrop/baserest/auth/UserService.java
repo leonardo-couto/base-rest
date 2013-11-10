@@ -12,9 +12,7 @@ public class UserService implements UserRepository {
 	@Override
 	public User get(String key) {
 		EntityManager entityManager = EntityManagerFactory.get();
-		User user = entityManager.find(BaseUser.class, key);
-
-		return user;
+		return entityManager.find(BaseUser.class, key);
 	}
 
 	@Override

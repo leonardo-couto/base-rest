@@ -74,5 +74,5 @@ public class BaseUser implements User {
 		String[] roles = this.roles.split(CSV_REGEX);
 		return Arrays.asList(roles);
 	}
-
+	
 }

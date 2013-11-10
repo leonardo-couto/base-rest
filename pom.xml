@@ -104,7 +104,7 @@
           <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.3.0</version>
+            <version>2.3.1</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>
@@ -123,6 +123,9 @@
               <loginService implementation="org.eclipse.jetty.jaas.JAASLoginService">
                  <name>JAASRealm</name>
                  <loginModuleName>Service</loginModuleName>
+                 <roleClassNames>
+                   <roleClassName>com.bewkrop.auth.jaas.Role</roleClassName>
+                 </roleClassNames>
               </loginService>
             </securityHandler>
           </webAppConfig>
