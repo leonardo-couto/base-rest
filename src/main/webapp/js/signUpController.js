@@ -1,5 +1,5 @@
 (function() {
-	var auth = angular.module("auth");
+	var auth = angular.module("auth", []);
 	
 	auth.controller("SignUpController", ["$scope", "$http", function SignUpController($scope, $http) {
 		
